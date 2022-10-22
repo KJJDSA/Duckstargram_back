@@ -3,13 +3,11 @@ const router = express.Router();
 const Likes = require('./likes');
 const Posts = require('./posts');
 const Comments = require('./comments');
-const Login = require('./login');
-const SignUp = require('./signup');
+const Users = require('./users');
 
 router.use('/likes/', Likes);
 router.use('/posts/', Posts);
 router.use('/comments/', Comments);
-router.use('/login/', Login);
-router.use('/signup/', SignUp);
+router.use('/users/', Users);
 
 module.exports = router;
