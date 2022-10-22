@@ -12,9 +12,8 @@ class PostService {
       });
 
       return allPost;
-
     } catch (error) {
-      throw error
+      throw error;
     }
   };
 
@@ -23,20 +22,24 @@ class PostService {
       const findPost = await this.postRepository.findPostById(postId);
 
       return findPost;
-
     } catch (error) {
-      throw error
+      throw error;
     }
   };
 
   createPost = async ({ userId, nickname, title, content, imgUrl }) => {
     try {
-      const createPostData = await this.postRepository.createPost({ userId, nickname, title, content, imgUrl });
+      const createPostData = await this.postRepository.createPost({
+        userId,
+        nickname,
+        title,
+        content,
+        imgUrl,
+      });
 
       return createPostData;
-
     } catch (error) {
-      throw error
+      throw error;
     }
   };
 
@@ -44,22 +47,21 @@ class PostService {
     try {
       await this.postRepository.updatePost(postId, title, content);
       const findPost = await this.postRepository.findPostById(postId);
-      if (!findPost) throw { name: "ERROR", message: "Post doesn't exist" };
+      if (!findPost) throw { name: 'ERROR', message: "Post doesn't exist" };
       if (findPost.userId !== userId) {
         return '권한이 없습니다.';
       }
 
       return findPost;
-
     } catch (error) {
-      throw error
+      throw error;
     }
   };
 
   deletePost = async (postId, userId) => {
     try {
       const findPost = await this.postRepository.findPostById(postId);
-      if (!findPost) throw { name: "ERROR", message: "Post doesn't exist" };
+      if (!findPost) throw { name: 'ERROR', message: "Post doesn't exist" };
       if (findPost.userId !== userId) {
         return '권한이 없습니다.';
       }
@@ -67,9 +69,8 @@ class PostService {
       await this.postRepository.deletePost(postId);
 
       return findPost;
-
     } catch (error) {
-      throw error
+      throw error;
     }
   };
 
@@ -78,15 +79,14 @@ class PostService {
       if (like) {
         await this.postRepository.createLike(postId, userId);
         await this.postRepository.countLike(postId);
-        return '좋등';
+        return '좋아요 등록완료';
       } else {
         await this.postRepository.deleteLike(postId, userId);
         await this.postRepository.discountLike(postId);
-        return '좋취';
+        return '좋아요 취소완료';
       }
-
     } catch (error) {
-      throw error
+      throw error;
     }
   };
 }

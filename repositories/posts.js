@@ -8,9 +8,8 @@ class PostRepository {
 
       return posts;
     } catch (error) {
-      throw error
+      throw error;
     }
-
   };
 
   findPostById = async (postId) => {
@@ -19,7 +18,7 @@ class PostRepository {
 
       return post;
     } catch (error) {
-      throw error
+      throw error;
     }
   };
 
@@ -36,7 +35,7 @@ class PostRepository {
 
       return createPostData;
     } catch (error) {
-      throw error
+      throw error;
     }
   };
 
@@ -46,7 +45,7 @@ class PostRepository {
 
       return updatePostData;
     } catch (error) {
-      throw error
+      throw error;
     }
   };
 
@@ -56,36 +55,37 @@ class PostRepository {
 
       return updatePostData;
     } catch (error) {
-      throw error
+      throw error;
     }
   };
 
   createLike = async (postId, userId) => {
     try {
-      const createLike = await Like.create({ user: userId, like: postId });
+      const createLike = await Like.create({ userId, postId });
+      return createLike;
     } catch (error) {
-      throw error
+      throw error;
     }
   };
 
   countLike = async (postId) => {
     try {
-      const countLike = await Post.increment({ likeSum: 1 }, { where: { postId: postId } });
+      const countLike = await Post.increment({ likeSum: 1 }, { where: { postId } });
       return countLike;
     } catch (error) {
-      throw error
+      throw error;
     }
   };
 
   deleteLike = async (postId, userId) => {
     try {
       const deleteLike = await Like.destroy({
-        where: { userId: userId, like: postId },
+        where: { userId: userId, postId: postId },
       });
+      return deleteLike;
     } catch (error) {
-      throw error
+      throw error;
     }
-    return deleteLike;
   };
 
   discountLike = async (postId) => {
@@ -93,7 +93,7 @@ class PostRepository {
       const discountLike = await Post.decrement({ likeSum: 1 }, { where: { postId: postId } });
       return discountLike;
     } catch (error) {
-      throw error
+      throw error;
     }
   };
 }
