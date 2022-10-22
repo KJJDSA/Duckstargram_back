@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
     /**
@@ -13,40 +11,43 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Post.init({
-    PostId: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: DataTypes.INTEGER
+  Post.init(
+    {
+      PostId: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      nickname: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      content: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      imgUrl: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      likesum: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    nickname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    content: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    imgUrl: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    likesum: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0
+    {
+      sequelize,
+      modelName: 'Post',
     }
-  }, {
-    sequelize,
-    modelName: 'Post',
-  });
+  );
   return Post;
 };

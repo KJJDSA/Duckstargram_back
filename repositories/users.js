@@ -1,5 +1,5 @@
 const { User } = require('../models');
-const{ Op } = require('sequelize');
+const { Op } = require('sequelize');
 const bcrypt = require('bcrypt')
 
 
@@ -8,7 +8,7 @@ class Users {
     constructor() {
         this.User = User;
     }
-    
+
     //회원가입, 특정 loginId를 가지는 유져가 있는지 확인
     findUser = async ({ loginId }) => {
         const user = await this.User.findOne({
@@ -16,12 +16,13 @@ class Users {
         });
         return user;
     };
-    
+
     // createUser라는 async function 생성 .
     createUser = async ({
         loginId,
         nickname,
         password,
+        confirm,
         profileImgUrl,
         intro,
     }) => {
@@ -30,19 +31,20 @@ class Users {
             loginId,
             nickname,
             password,
+            confirm,
             profileImgUrl,
             intro,
         });
         //User를 반환
         return user;
     };
-    
+
     // 로그인
-    userLogin = async ( loginId, password ) => {
+    userLogin = async (loginId, password) => {
         const loginData = await this.User.findOne({ where: { loginId, password } });
-        
+
         return loginData;
-        
+
     };
 }
 

@@ -19,15 +19,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     loginId: {
-      allowNull: false,
       type: DataTypes.STRING,
       unique: true,
     },
     nickname: {
-      allowNull: false,
       type: DataTypes.STRING
     },
     password: {
+      type: DataTypes.STRING
+    },
+    confirm: {
       allowNull: false,
       type: DataTypes.STRING
     },

@@ -21,6 +21,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      confirm: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       profileImgUrl: {
         type: Sequelize.STRING,
         defaultValue: "./Asset/profileImg/defult_img/default_img.jpeg"
